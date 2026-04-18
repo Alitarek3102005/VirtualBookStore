@@ -1,5 +1,6 @@
 package com.example.authenticationservice.Dto;
 
+import com.example.authenticationservice.Entity.Role;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -23,6 +24,9 @@ public class RegisterRequest {
             regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$"
     )
     private String password;
+
+    @NotNull
+    private Role role;
 
     @Size(max = 50)
     private String fullName;

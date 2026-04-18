@@ -11,9 +11,10 @@ public class UserMapper {
         return User.builder().username(request.getUsername())
                 .email(request.getEmail())
                 .password(request.getPassword())
+                .role(request.getRole())
                 .fullName(request.getFullName())
                 .address(request.getAddress())
-                .role(Role.ROLE_USER)
+
                 .build();
 
     }
