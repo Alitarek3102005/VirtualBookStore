@@ -2,6 +2,9 @@ package com.example.authenticationservice.Dto;
 
 import com.example.authenticationservice.Entity.Role;
 import com.example.authenticationservice.Entity.User;
+import org.springframework.stereotype.Component;
+
+@Component
 
 public class UserMapper {
     public User mapToUser(RegisterRequest request){
