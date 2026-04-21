@@ -44,11 +44,11 @@ public class GatewayConfig {
                 .build();
     }
 
-    // This handles the CORS block so your frontend can talk to the Gateway
+
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Your frontend port
+        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
         corsConfig.setMaxAge(3600L);
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         corsConfig.addAllowedHeader("*");
