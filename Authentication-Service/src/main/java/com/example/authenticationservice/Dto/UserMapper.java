@@ -8,13 +8,19 @@ import org.springframework.stereotype.Component;
 
 public class UserMapper {
     public User mapToUser(RegisterRequest request){
+        Role role;
+
+        if (request.getRole() == Role.PUBLISHER) {
+            role = Role.PUBLISHER;
+        } else {
+            role = Role.USER;
+        }
         return User.builder().username(request.getUsername())
                 .email(request.getEmail())
                 .password(request.getPassword())
-                .role(request.getRole())
+                .role(role)
                 .fullName(request.getFullName())
                 .address(request.getAddress())
-
                 .build();
 
     }

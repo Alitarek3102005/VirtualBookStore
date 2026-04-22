@@ -6,7 +6,11 @@ import com.example.authenticationservice.Dto.RegisterRequest;
 import com.example.authenticationservice.Dto.UserMapper;
 import com.example.authenticationservice.Entity.User;
 import com.example.authenticationservice.Repository.UserRepository;
+import com.example.authenticationservice.Security_Config.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwt;
 
     @Override
     public AuthResponse register(RegisterRequest request) {
@@ -46,16 +52,29 @@ public class UserServiceImpl implements UserService {
     @Override
     public AuthResponse login(LoginRequest request) {
 
-        // find user
-        User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("Invalid username or password"));
+        // 1. authenticate
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(),
+                        request.getPassword()
+                )
+        );
 
-        // check password
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid username or password");
+        if (authentication.isAuthenticated()) {
+
+            User user = userRepository.findByUsername(request.getUsername())
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            String token = jwt.generateToken(
+                    user.getUsername()
+            );
+
+            AuthResponse response = userMapper.mapToResponse(user);
+
+            response.setToken(token);
+
+            return response;
         }
 
-        // return response (later هتحط JWT هنا)
-        return userMapper.mapToResponse(user);
-    }
-}
+        throw new RuntimeException("Invalid username or password");
+    }}
