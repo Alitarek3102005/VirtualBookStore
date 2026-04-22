@@ -7,18 +7,22 @@ import org.springframework.stereotype.Component;
 @Component
 
 public class UserMapper {
+
+    //no login req to map it
+
     public User mapToUser(RegisterRequest request){
         Role role;
 
         if (request.getRole() == Role.PUBLISHER) {
             role = Role.PUBLISHER;
-        } else {
+        }
+        else {
             role = Role.USER;
         }
         return User.builder().username(request.getUsername())
                 .email(request.getEmail())
                 .password(request.getPassword())
-                .role(role)
+                .role(request.getRole())
                 .fullName(request.getFullName())
                 .address(request.getAddress())
                 .build();

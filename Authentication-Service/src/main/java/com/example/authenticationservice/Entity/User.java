@@ -3,7 +3,9 @@ package com.example.authenticationservice.Entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
+@Component
 @Entity
 @Table(name = "users")
 @Data

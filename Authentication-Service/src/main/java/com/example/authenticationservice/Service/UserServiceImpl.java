@@ -45,14 +45,21 @@ public class UserServiceImpl implements UserService {
 
         // save
     User savedUser=userRepository.save(user);
-        // return response
-    return userMapper.mapToResponse(savedUser);
+        String token = jwt.generateToken(savedUser.getUsername(), String.valueOf(savedUser.getRole()));
+
+        return AuthResponse.builder()
+                .id(savedUser.getId())
+                .username(savedUser.getUsername())
+                .email(savedUser.getEmail())
+                .fullName(savedUser.getFullName())
+                .role(savedUser.getRole().name())
+                .token(token)
+                .build();
     }
 
     @Override
     public AuthResponse login(LoginRequest request) {
 
-        // 1. authenticate
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -63,17 +70,22 @@ public class UserServiceImpl implements UserService {
         if (authentication.isAuthenticated()) {
 
             User user = userRepository.findByUsername(request.getUsername())
-                    .orElseThrow(() -> new RuntimeException("User not found"));
+                    .orElseThrow();
 
             String token = jwt.generateToken(
-                    user.getUsername()
+                    user.getUsername(),
+                    user.getRole().name()
             );
 
-            AuthResponse response = userMapper.mapToResponse(user);
+            return AuthResponse.builder()
+                    .id(user.getId())
+                    .username(user.getUsername())
+                    .email(user.getEmail())
+                    .fullName(user.getFullName())
+                    .role(user.getRole().name())
 
-            response.setToken(token);
-
-            return response;
+                    .token(token)
+                    .build();
         }
 
         throw new RuntimeException("Invalid username or password");
