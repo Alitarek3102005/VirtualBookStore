@@ -1,6 +1,6 @@
 package com.example.cartservice.dto;
 
-public class CartRequest {
+public class UpdateQuantityRequest {
 
     private Long bookId;
     private int quantity;
