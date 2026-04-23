@@ -11,8 +11,18 @@
     <groupId>com.example</groupId>
     <artifactId>VirtualBookStore</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>VirtualBookStore</name>
     <description>VirtualBookStore</description>
+    <modules>
+        <module>discovery-server</module>
+        <module>Order-Service</module>
+        <module>Catalog-Service</module>
+        <module>Payment-Service</module>
+        <module>Reviews-Service</module>
+        <module>Authentication-Service</module>
+        <module>Cart-Service</module>
+    </modules>
     <url/>
     <licenses>
         <license/>
