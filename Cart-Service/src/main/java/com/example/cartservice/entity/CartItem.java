@@ -16,7 +16,7 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "cart_id")
     @JsonIgnore
-    private Cart cart;
+    private com.example.cartservice.entity.Cart cart;
 
     public Long getBookId() { return bookId; }
     public void setBookId(Long bookId) { this.bookId = bookId; }
@@ -24,6 +24,6 @@ public class CartItem {
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
-    public Cart getCart() { return cart; }
-    public void setCart(Cart cart) { this.cart = cart; }
+    public com.example.cartservice.entity.Cart getCart() { return cart; }
+    public void setCart(com.example.cartservice.entity.Cart cart) { this.cart = cart; }
 }

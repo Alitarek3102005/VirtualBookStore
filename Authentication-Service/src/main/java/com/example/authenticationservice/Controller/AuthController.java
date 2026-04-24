@@ -10,7 +10,7 @@ import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -26,6 +26,4 @@ public class AuthController {
     public AuthResponse login(@RequestBody @Valid LoginRequest request) {
         return userService.login(request);
     }
-
-
 }

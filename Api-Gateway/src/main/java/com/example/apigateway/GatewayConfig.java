@@ -19,7 +19,7 @@ public class GatewayConfig {
                 // 1. Authentication Service
                 .route("auth-service", r -> r
                         .path("/api/auth/**", "/api/users/**")
-                        .uri("lb://auth-service"))
+                        .uri("lb://authentication-service"))
 
                 // 2. Catalog Service (Contains singular and plural to prevent 404s!)
                 .route("catalog-service", r -> r
