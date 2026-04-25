@@ -3,7 +3,7 @@ package com.example.reviewsservice.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.reviewsservice.model.Review;
+import com.example.reviewsservice.entity.Review;
 
 @Repository // دي بتعرف Spring إن ده الجزء المسؤول عن التعامل مع الداتا بيز
 public interface ReviewRepository extends JpaRepository<Review, Long> {
