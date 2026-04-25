@@ -1,7 +1,7 @@
 package com.example.cartservice.controller;
 
-import com.example.cartservice.dto.CartRequest;
-import com.example.cartservice.dto.UpdateQuantityRequest;
+import com.example.cartservice.DTO.CartRequest;
+import com.example.cartservice.DTO.UpdateQuantityRequest;
 import com.example.cartservice.entity.Cart;
 import com.example.cartservice.service.CartService;
 
@@ -49,7 +49,6 @@ public class CartController {
                 request.getQuantity()
         );
     }
-
     @DeleteMapping("/{userId}/clear")
     public String clearCart(@PathVariable Long userId) {
         cartService.clearCart(userId);

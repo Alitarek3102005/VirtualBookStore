@@ -1,6 +1,6 @@
 package com.example.reviewsservice.controller;
 
-import com.example.reviewsservice.model.Review;
+import com.example.reviewsservice.entity.Review;
 import com.example.reviewsservice.service.ReviewService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

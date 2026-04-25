@@ -12,6 +12,7 @@ public class CartItem {
 
     private Long bookId;
     private int quantity;
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
@@ -23,6 +24,14 @@ public class CartItem {
 
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
+
+    public Double getPrice() {
+        return price;
+    }
+    
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
     public com.example.cartservice.entity.Cart getCart() { return cart; }
     public void setCart(com.example.cartservice.entity.Cart cart) { this.cart = cart; }

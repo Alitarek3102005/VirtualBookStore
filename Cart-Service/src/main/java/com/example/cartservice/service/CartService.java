@@ -1,26 +1,44 @@
 package com.example.cartservice.service;
 
+import com.example.cartservice.DTO.BookResponse;
 import com.example.cartservice.entity.Cart;
 import com.example.cartservice.entity.CartItem;
 import com.example.cartservice.repository.CartRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.cartservice.client.CatalogClient;
 
 @Service
 @Transactional
 public class CartService {
 
     private final CartRepository cartRepository;
+    private final CatalogClient catalogClient;
 
-    public CartService(CartRepository cartRepository) {
+    public CartService(CartRepository cartRepository, CatalogClient catalogClient) {
         this.cartRepository = cartRepository;
+        this.catalogClient = catalogClient;
     }
-
+    
     public Cart addItem(Long userId, Long bookId, int quantity) {
-        validateQuantity(quantity);
 
-        Cart cart = getOrCreateCart(userId);
+        BookResponse book = catalogClient.getBookById(bookId);
+
+        if (book == null) {
+            throw new RuntimeException("Book not found");
+        }
+
+        if (book.getQuantity() < quantity) {
+            throw new RuntimeException("Not enough stock");
+        }
+
+        Cart cart = cartRepository.findByUserId(userId)
+                .orElseGet(() -> {
+                    Cart newCart = new Cart();
+                    newCart.setUserId(userId);
+                    return newCart;
+                });
 
         for (CartItem item : cart.getItems()) {
             if (item.getBookId().equals(bookId)) {
@@ -32,6 +50,7 @@ public class CartService {
         CartItem item = new CartItem();
         item.setBookId(bookId);
         item.setQuantity(quantity);
+        item.setPrice(book.getPrice());
         item.setCart(cart);
 
         cart.getItems().add(item);
