@@ -1,9 +1,6 @@
 package com.example.authenticationservice.service;
 
-import com.example.authenticationservice.DTO.AuthResponse;
-import com.example.authenticationservice.DTO.LoginRequest;
-import com.example.authenticationservice.DTO.RegisterRequest;
-import com.example.authenticationservice.DTO.UserMapper;
+import com.example.authenticationservice.DTO.*;
 import com.example.authenticationservice.entity.Role;
 import com.example.authenticationservice.entity.User;
 import com.example.authenticationservice.repository.UserRepository;
@@ -86,4 +83,17 @@ public class UserServiceImpl implements UserService {
                 .role(user.getRole().name())
                 .token(token)
                 .build();
-    }}
+    }
+    public UserResponse getUser(Long id) {
+        var user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // 2. Convert to the safe DTO (Leave the password behind!)
+        UserResponse response = UserResponse.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .build();
+        return response;
+    }
+}

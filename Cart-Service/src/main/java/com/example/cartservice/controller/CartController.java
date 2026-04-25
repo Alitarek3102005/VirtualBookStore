@@ -49,7 +49,6 @@ public class CartController {
                 request.getQuantity()
         );
     }
-
     @DeleteMapping("/{userId}/clear")
     public String clearCart(@PathVariable Long userId) {
         cartService.clearCart(userId);
