@@ -128,15 +128,16 @@ public class BookService {
             System.out.println("Feign Error fetching publisher: " + e.getMessage());
         }
         return BookResponse.builder()
-                .id(book.getId())
-                .title(book.getTitle())
-                .author(book.getAuthor())
-                .price(book.getPrice())
-                .description(book.getDescription())
-                .imageUrl(book.getImageUrl())
-                .stockQuantity(book.getQuantity())
-                .categoryName(book.getCategory().getName())
-                .publisherName(publisherName)
-                .build();
+            .id(book.getId())
+            .title(book.getTitle())
+            .author(book.getAuthor())
+            .price(book.getPrice())
+            .description(book.getDescription())
+            .imageUrl(book.getImageUrl())
+            .stockQuantity(book.getQuantity())
+            .quantity(book.getQuantity())
+            .categoryName(book.getCategory().getName())
+            .publisherName(publisherName)
+            .build();
     }
 }

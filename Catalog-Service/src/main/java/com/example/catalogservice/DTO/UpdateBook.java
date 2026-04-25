@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record UpdateBook(
         @NotNull
-         Double price,
-         Category category
+        Double price,
+        Category category
 ) {
 }

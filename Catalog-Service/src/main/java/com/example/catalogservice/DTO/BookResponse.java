@@ -18,4 +18,5 @@ public class BookResponse {
     private Long stockQuantity;
     private String categoryName;
     private String publisherName;
+    private Long quantity;
 }
