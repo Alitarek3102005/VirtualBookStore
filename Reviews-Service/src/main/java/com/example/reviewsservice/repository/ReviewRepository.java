@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.reviewsservice.model.Review;
 
 @Repository // دي بتعرف Spring إن ده الجزء المسؤول عن التعامل مع الداتا بيز
-public interface ReviewRepository extends JpaRepository<Review, Long> {
+public interface ReviewRepository extends JpaRepository<Review, String> {
     
     // الميزة هنا إن JpaRepository بتديك كل العمليات الأساسية جاهزة:
     // .findAll() -> بتجيب كل التقييمات
