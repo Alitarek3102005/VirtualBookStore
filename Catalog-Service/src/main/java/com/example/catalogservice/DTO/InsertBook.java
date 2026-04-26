@@ -13,7 +13,8 @@ public record InsertBook(
         Category category,
         Long publisher_id,
         @NotNull
-        Long quantity
+        Long quantity,
+        String description
 ) {
 
 }

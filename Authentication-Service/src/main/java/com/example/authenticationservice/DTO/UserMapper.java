@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 
 public class UserMapper {
-
-    //no login req to map it
-
     public User mapToUser(RegisterRequest request){
         Role role;
 

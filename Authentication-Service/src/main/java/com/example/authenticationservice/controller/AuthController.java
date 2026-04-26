@@ -19,8 +19,6 @@ public class AuthController {
     public AuthResponse register(@RequestBody @Valid RegisterRequest request) {
         return userService.register(request);
     }
-
-    // ================= LOGIN =================
     @PostMapping("/login")
     public AuthResponse login(@RequestBody @Valid LoginRequest request) {
         return userService.login(request);

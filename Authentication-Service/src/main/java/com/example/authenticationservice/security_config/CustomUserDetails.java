@@ -23,20 +23,14 @@ public class CustomUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-
-        // Role
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
-
-        // Default permission (لكل الناس)
         authorities.add(new SimpleGrantedAuthority("READ_PRIVILEGES"));
 
-        // Admin
         if (user.getRole() == Role.ADMIN) {
             authorities.add(new SimpleGrantedAuthority("WRITE_PRIVILEGES"));
             authorities.add(new SimpleGrantedAuthority("DELETE_PRIVILEGES"));
         }
 
-        // Publisher
         if (user.getRole() == Role.PUBLISHER) {
             authorities.add(new SimpleGrantedAuthority("WRITE_PRIVILEGES"));
         }

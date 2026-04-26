@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -72,7 +75,8 @@ public class UserServiceImpl implements UserService {
 
         String token = jwt.generateToken(
                 user.getUsername(),
-                user.getRole().name()
+                user.getRole().name(),
+                user.getId()
         );
 
         return AuthResponse.builder()
@@ -95,5 +99,18 @@ public class UserServiceImpl implements UserService {
                 .email(user.getEmail())
                 .build();
         return response;
+    }
+    public List<UserResponse> getPublisherUsers(Role role) {
+        List<User> publishers= userRepository.findByRole(role);
+        List<UserResponse> userResponses = new ArrayList<>();
+        for(User publisher : publishers) {
+            UserResponse user =UserResponse.builder()
+                    .id(publisher.getId())
+                    .username(publisher.getUsername())
+                    .email(publisher.getEmail())
+                    .build();
+            userResponses.add(user);
+        }
+        return userResponses;
     }
 }
