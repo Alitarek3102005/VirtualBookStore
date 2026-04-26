@@ -1,11 +1,12 @@
-package com.example.authenticationservice.security_config;
+package com.example.authenticationservice.Security_Config;
 
-import com.example.authenticationservice.entity.User;
+import com.example.authenticationservice.Entity.User;
+import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import com.example.authenticationservice.entity.Role;
+import com.example.authenticationservice.Entity.Role;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,7 +24,9 @@ public class CustomUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         List<GrantedAuthority> authorities = new ArrayList<>();
+
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+
         authorities.add(new SimpleGrantedAuthority("READ_PRIVILEGES"));
 
         if (user.getRole() == Role.ADMIN) {
