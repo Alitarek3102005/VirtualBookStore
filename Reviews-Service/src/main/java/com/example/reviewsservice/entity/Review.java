@@ -13,17 +13,18 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    private Long id;
 
-    @NotBlank(message = " The comment cannot be empty")
-    @Column(nullable = false)
+    // حدد اسم العمود بالظبط زي الصورة
+    @Column(name = "comment", nullable = false)
     private String comment;
 
-    @Min(1)
-    @Max(5)
-    @Column(nullable = false)
+    @Column(name = "rating", nullable = false)
     private int rating;
 
-    
+    @Column(name = "book_id") // لازم تطابق الصورة
     private Long bookId;
+
+    @Column(name = "user_name") // لازم تطابق الصورة
     private String userName; 
 }
