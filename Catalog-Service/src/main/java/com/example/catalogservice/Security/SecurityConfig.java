@@ -12,7 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity // 🟢 MUST HAVE: This activates @PreAuthorize in your controllers!
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -24,14 +24,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // 1. Anyone can view books and categories (Angular frontend, Cart service, etc.)
                         .requestMatchers(HttpMethod.GET, "/api/book/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/category/**").permitAll()
 
-                        // 2. Allow error handling so you don't get hidden 403s
                         .requestMatchers("/error").permitAll()
 
-                        // 3. Any other request (POST, PUT, DELETE) requires a valid JWT token
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
