@@ -113,4 +113,30 @@ public class UserServiceImpl implements UserService {
         }
         return userResponses;
     }
+    public UserResponse updateUserRole(Long id, Role newRole) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setRole(newRole);
+        userRepository.save(user);
+        return UserResponse.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .build();
+    }
+
+    public UserResponse toggleUserEnabled(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setEnabled(!user.isEnabled());
+        userRepository.save(user);
+        return UserResponse.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .build();
+    }
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
 }

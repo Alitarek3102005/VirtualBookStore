@@ -1,12 +1,12 @@
-package com.example.authenticationservice.Security_Config;
+package com.example.authenticationservice.security_config;
 
-import com.example.authenticationservice.Entity.User;
+import com.example.authenticationservice.entity.User;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import com.example.authenticationservice.Entity.Role;
+import com.example.authenticationservice.entity.Role;
 
 import java.util.ArrayList;
 import java.util.Collection;

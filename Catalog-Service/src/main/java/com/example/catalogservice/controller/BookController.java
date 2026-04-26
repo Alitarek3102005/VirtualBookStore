@@ -63,7 +63,6 @@ public class BookController {
     }
 
     @GetMapping("/{id}/check-stock")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'PUBLISHER')")
     public ResponseEntity<Boolean> checkStock(
             @PathVariable Long id,
             @RequestParam Long quantity) {
@@ -73,7 +72,6 @@ public class BookController {
     }
 
     @PutMapping("/{id}/reduce-stock")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<String> reduceStock(
             @PathVariable Long id,
             @RequestParam Long quantity) {

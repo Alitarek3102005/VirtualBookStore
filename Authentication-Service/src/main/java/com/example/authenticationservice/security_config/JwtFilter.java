@@ -50,11 +50,12 @@ public class JwtFilter extends OncePerRequestFilter {
             UserDetails userDetails =
                     userDetailsService.loadUserByUsername(username);
 
-            if (jwtUtil.validateToken(token, userDetails)) {
+            if (!jwtUtil.isTokenExpired(token)) {
 
                 UsernamePasswordAuthenticationToken auth =
                         new UsernamePasswordAuthenticationToken(
                                 userDetails,
+                                null,
 
                                 userDetails.getAuthorities()
                         );
