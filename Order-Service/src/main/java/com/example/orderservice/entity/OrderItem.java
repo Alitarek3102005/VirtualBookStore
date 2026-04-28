@@ -1,13 +1,15 @@
 package com.example.orderservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.jetbrains.annotations.NotNull;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "order_items")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,7 +19,7 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     private Long bookId;
     
     @NotNull
@@ -25,7 +27,8 @@ public class OrderItem {
     
     @NotNull
     private double price;
-    
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;

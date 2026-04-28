@@ -1,5 +1,6 @@
 package com.example.orderservice.DTO;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,7 @@ import java.util.List;
 public class CartDTO {
     private Long id;
     private Long userId;
+
+    @JsonAlias("items")
     private List<CartItemDTO> cartItems;
 }

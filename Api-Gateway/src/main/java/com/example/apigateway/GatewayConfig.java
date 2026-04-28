@@ -31,12 +31,17 @@ public class GatewayConfig {
                         .path("/api/cart/**")
                         .uri("lb://cart-service"))
 
-                // 4. Payment & Order Service
+                // 4. Payment Service
                 .route("payment-service", r -> r
-                        .path("/api/payments/**", "/api/orders/**")
+                        .path("/api/payments/**")
                         .uri("lb://payment-service"))
 
-                // 5. Reviews Service
+                // 5. Order Service
+                .route("order-service", r -> r
+                        .path("/api/order/**", "/api/orders/**")
+                        .uri("lb://order-service"))
+
+                // 6. Reviews Service
                 .route("reviews-service", r -> r
                         .path("/api/reviews/**")
                         .uri("lb://reviews-service"))

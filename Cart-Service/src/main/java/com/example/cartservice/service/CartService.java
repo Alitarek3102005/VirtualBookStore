@@ -5,8 +5,10 @@ import com.example.cartservice.entity.Cart;
 import com.example.cartservice.entity.CartItem;
 import com.example.cartservice.repository.CartRepository;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import com.example.cartservice.client.CatalogClient;
 
 @Service
@@ -26,11 +28,15 @@ public class CartService {
         BookResponse book = catalogClient.getBookById(bookId);
 
         if (book == null) {
-            throw new RuntimeException("Book not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found");
         }
 
         if (book.getQuantity() < quantity) {
-            throw new RuntimeException("Not enough stock");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not enough stock");
+        }
+
+        if (book.getPrice() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book price is missing");
         }
 
         Cart cart = cartRepository.findByUserId(userId)
@@ -43,6 +49,7 @@ public class CartService {
         for (CartItem item : cart.getItems()) {
             if (item.getBookId().equals(bookId)) {
                 item.setQuantity(item.getQuantity() + quantity);
+                item.setPrice(book.getPrice());
                 return cartRepository.save(cart);
             }
         }
@@ -59,7 +66,8 @@ public class CartService {
     }
 
     public Cart getCart(Long userId) {
-        return getOrCreateCart(userId);
+        Cart cart = getOrCreateCart(userId);
+        return refreshMissingPrices(cart);
     }
 
     public Cart removeItem(Long userId, Long bookId) {
@@ -104,6 +112,25 @@ public class CartService {
                                 .orElseThrow(() -> exception);
                     }
                 });
+    }
+
+    private Cart refreshMissingPrices(Cart cart) {
+        boolean updated = false;
+
+        for (CartItem item : cart.getItems()) {
+            if (item.getPrice() == null) {
+                BookResponse book = catalogClient.getBookById(item.getBookId());
+
+                if (book == null || book.getPrice() == null) {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book price is missing");
+                }
+
+                item.setPrice(book.getPrice());
+                updated = true;
+            }
+        }
+
+        return updated ? cartRepository.save(cart) : cart;
     }
 
     private void validateQuantity(int quantity) {
