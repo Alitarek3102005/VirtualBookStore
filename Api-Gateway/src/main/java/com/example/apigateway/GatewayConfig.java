@@ -18,7 +18,7 @@ public class GatewayConfig {
         return builder.routes()
                 // 1. Authentication Service
                 .route("auth-service", r -> r
-                        .path("/api/auth/**", "/api/user/**")
+                        .path("/api/auth/**", "/api/user/**","/api/admin/**","/api/puplisher/**")
                         .uri("lb://authentication-service"))
 
                 // 2. Catalog Service (Contains singular and plural to prevent 404s!)

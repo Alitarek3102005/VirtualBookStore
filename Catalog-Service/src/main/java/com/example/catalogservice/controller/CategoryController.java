@@ -21,6 +21,10 @@ public class CategoryController {
     public Category findById(@PathVariable Long id){
         return categoryService.findCategoryById(id);
     }
+    @GetMapping("/byName")
+    public Category findByName(@RequestParam String name){
+        return categoryService.findCategoryByName(name);
+    }
     @PostMapping
     public Category save(@RequestBody InsertUpdateCategory category){
         return categoryService.Save(category);

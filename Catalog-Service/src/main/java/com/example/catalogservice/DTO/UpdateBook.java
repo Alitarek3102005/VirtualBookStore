@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 public record UpdateBook(
         @NotNull
         Double price,
-        Category category
+        Long categoryId,
+        Long quantity
 ) {
 }

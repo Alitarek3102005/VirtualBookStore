@@ -6,7 +6,9 @@ import com.example.catalogservice.DTO.UpdateBook;
 import com.example.catalogservice.client.AuthServiceClient;
 import com.example.catalogservice.client.UserDto;
 import com.example.catalogservice.entity.Book;
+import com.example.catalogservice.entity.Category;
 import com.example.catalogservice.repository.BookRepository;
+import com.example.catalogservice.repository.CategoryRepository;
 import jakarta.transaction.Transactional;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private CategoryService categoryService;
     @Autowired
     private AuthServiceClient authServiceClient;
 
@@ -54,9 +58,11 @@ public class BookService {
     }
     public Book update(Long id, UpdateBook book) {
         Book bookEntity = bookRepository.findById(id).orElse(null);
+        Category category =categoryService.findCategoryById(book.categoryId());
         if (bookEntity != null) {
             bookEntity.setPrice(book.price());
-            bookEntity.setCategory(book.category());
+            bookEntity.setCategory(category);
+            bookEntity.setQuantity(book.quantity());
             return bookRepository.save(bookEntity);
         }
         return null;

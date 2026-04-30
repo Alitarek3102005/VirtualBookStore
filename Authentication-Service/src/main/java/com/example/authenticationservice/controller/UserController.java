@@ -3,6 +3,7 @@ package com.example.authenticationservice.controller;
 import com.example.authenticationservice.DTO.AuthResponse;
 import com.example.authenticationservice.DTO.UserResponse;
 import com.example.authenticationservice.entity.Role;
+import com.example.authenticationservice.entity.User;
 import com.example.authenticationservice.service.UserService;
 import com.example.authenticationservice.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,10 @@ public class UserController {
     public String userTest() {
         return "Hello User";
     }
-
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        return new ResponseEntity<>(userService.getAllUseer(), HttpStatus.OK);
+    }
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK) ;
