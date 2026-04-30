@@ -14,17 +14,16 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
-
-    // حدد اسم العمود بالظبط زي الصورة
+    
     @Column(name = "comment", nullable = false)
     private String comment;
 
     @Column(name = "rating", nullable = false)
     private int rating;
 
-    @Column(name = "book_id") // لازم تطابق الصورة
+    @Column(name = "book_id") 
     private Long bookId;
 
-    @Column(name = "user_name") // لازم تطابق الصورة
+    @Column(name = "user_name") 
     private String userName; 
 }
