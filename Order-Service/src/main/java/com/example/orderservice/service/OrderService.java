@@ -91,4 +91,10 @@ public class OrderService {
 
         return saved;
     }
+    public List<Order> getAllOrdersByUserId(Long userId) {
+        return orderRepository.findByReaderId(userId);
+    }
+    public Order getOrderById(Long orderId,Long userId) {
+        return orderRepository.findByIdAndReaderId(orderId,userId);
+    }
 }

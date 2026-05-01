@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @RestController
 @RequestMapping({"/api/order", "/order"})
 public class OrderController {
@@ -23,5 +25,13 @@ public class OrderController {
     @PostMapping({"/checkout/{userId}", "/{userId}/checkout"})
     public Order checkout(@PathVariable Long userId) {
         return orderService.createOrderFromCart(userId);
+    }
+    @GetMapping("/history/{id}")
+    public List<Order> getOrders(@PathVariable Long id) {
+        return orderService.getAllOrdersByUserId(id);
+    }
+    @GetMapping("/{userId}/{orderId}")
+    public Order getOrder(@PathVariable Long orderId, @PathVariable Long userId) {
+        return orderService.getOrderById(orderId, userId);
     }
 }
