@@ -1,4 +1,4 @@
-package com.example.reviewsservice; // لاحظ إنه في الفولدر الأب
+package com.example.reviewsservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

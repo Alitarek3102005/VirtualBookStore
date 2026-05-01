@@ -1,6 +1,7 @@
 package com.example.reviewsservice.controller;
 
-import com.example.reviewsservice.DTO.ReviewRequestDTO; 
+import com.example.reviewsservice.DTO.ReviewRequestDTO;
+import com.example.reviewsservice.DTO.updateReviewDTO;
 import com.example.reviewsservice.entity.Review;
 import com.example.reviewsservice.service.ReviewService;
 import jakarta.validation.Valid;
@@ -33,5 +34,14 @@ public class ReviewController {
         
         Review review = reviewService.addReview(dto);
         return new ResponseEntity<>(review, HttpStatus.CREATED);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Review> updateReview(@PathVariable Long id,@Valid @RequestBody updateReviewDTO dto) {
+        return  ResponseEntity.ok(reviewService.updateReview(id,dto));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
+        reviewService.deleteReview(id);
+        return  ResponseEntity.noContent().build();
     }
 }
