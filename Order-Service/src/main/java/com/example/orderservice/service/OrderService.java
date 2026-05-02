@@ -97,4 +97,17 @@ public class OrderService {
     public Order getOrderById(Long orderId,Long userId) {
         return orderRepository.findByIdAndReaderId(orderId,userId);
     }
+    public List<Order> getAllOrders(){
+        return orderRepository.findAll();
+    }
+    @Transactional
+    public Order updateOrderStatus(Long orderId, OrderStatus orderStatus) {
+        Order order=orderRepository.findById(orderId).orElse(null);
+        if(order==null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found");
+        }
+        order.setStatus(orderStatus);
+        orderRepository.save(order);
+        return order;
+    }
 }

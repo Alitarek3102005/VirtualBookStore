@@ -33,7 +33,7 @@ public class GatewayConfig {
 
                 // 4. Payment Service
                 .route("payment-service", r -> r
-                        .path("/api/payments/**")
+                        .path("/api/payment/**")
                         .uri("lb://payment-service"))
 
                 // 5. Order Service

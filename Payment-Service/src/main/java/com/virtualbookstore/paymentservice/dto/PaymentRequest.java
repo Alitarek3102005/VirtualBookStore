@@ -9,6 +9,4 @@ public class PaymentRequest {
     private String name;
     private String currency;
     private Long orderId;
-    
-	
 }

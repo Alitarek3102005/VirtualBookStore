@@ -1,5 +1,6 @@
 package com.virtualbookstore.paymentservice.service;
 
+import com.virtualbookstore.paymentservice.client.OrderClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,74 +26,76 @@ public class PaymentService {
     	
     @Autowired
 	private PaymentRepository paymentRepository;
+    @Autowired
+    private OrderClient orderClient;
 
     @Value("${Stripe.secretKey}")
-    private String stripeSecretKey; 
-    
+    private String stripeSecretKey;
+
     public StripeResponse payWithStripe(PaymentRequest paymentRequest) {
-    Stripe.apiKey = stripeSecretKey;
-    
-    Payment payment = new Payment();
-    payment.setAmount(paymentRequest.getAmount());
-    payment.setStatus("PENDING");
-    payment.setMethod("STRIPE");
-    payment = paymentRepository.save(payment);
+        Stripe.apiKey = stripeSecretKey;
+        Payment payment = new Payment();
+        payment.setAmount(paymentRequest.getAmount());
+        payment.setStatus("PENDING");
+        payment.setMethod("STRIPE");
 
-    ProductData productData =
-                 ProductData.builder()
-                            .setName(paymentRequest.getName())
-                            .build();
+        payment.setOrderId(paymentRequest.getOrderId());
 
-           PriceData priceData =
-                   PriceData.builder()
-                            .setCurrency(paymentRequest.getCurrency() != null ? paymentRequest.getCurrency() : "EGP")
-                            .setUnitAmount(paymentRequest.getAmount())
-                            .setProductData(productData)
-                            .build();
+        payment = paymentRepository.save(payment);
 
-           LineItem lineItem =
-                    LineItem.builder()
-                            .setQuantity(paymentRequest.getQuantity())
-                            .setPriceData(priceData)
-                            .build();
+        ProductData productData = ProductData.builder()
+                .setName(paymentRequest.getName())
+                .build();
 
-            SessionCreateParams params =
-                    SessionCreateParams.builder()
-                            .setMode(Mode.PAYMENT)
-                            .setSuccessUrl("http://localhost:8085/success?paymentId=" + payment.getPaymentId())
-                            .setCancelUrl("http://localhost:8085/cancel")
-                            .putMetadata("paymentId", String.valueOf(payment.getPaymentId())) 
-                            .addLineItem(lineItem)
-                            .build();
+        PriceData priceData = PriceData.builder()
+                .setCurrency(paymentRequest.getCurrency() != null ? paymentRequest.getCurrency() : "EGP")
+                .setUnitAmount(paymentRequest.getAmount())
+                .setProductData(productData)
+                .build();
 
-            Session session = null;
-            try {
-                session = Session.create(params);
-                
-            } catch (StripeException e) {
+        LineItem lineItem = LineItem.builder()
+                .setQuantity(paymentRequest.getQuantity())
+                .setPriceData(priceData)
+                .build();
 
-                return StripeResponse
-                        .builder()
-                        .status("FAILED")
-                        .message(e.getMessage())
-                        .build();
-                
-            }
+        SessionCreateParams params = SessionCreateParams.builder()
+                .setMode(Mode.PAYMENT)
+                .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
+                .setSuccessUrl("http://localhost:4200/success")
+                .setCancelUrl("http://localhost:4200/cart")
+                .putMetadata("paymentId", String.valueOf(payment.getPaymentId()))
+                .addLineItem(lineItem)
+                .build();
 
-            return StripeResponse
-                    .builder()
-                    .status("SUCCESS")
-                    .message("Payment session created")
-                    .sessionId(session.getId())
-                    .sessionUrl(session.getUrl())
+        Session session = null;
+        try {
+            session = Session.create(params);
+        } catch (StripeException e) {
+            return StripeResponse.builder()
+                    .status("FAILED")
+                    .message(e.getMessage())
                     .build();
         }
-    
+
+        return StripeResponse.builder()
+                .status("SUCCESS")
+                .message("Payment session created")
+                .sessionId(session.getId())
+                .sessionUrl(session.getUrl())
+                .build();
+    }
+
     public void confirmPayment(Long paymentId){
-    	Payment pendingPayment = paymentRepository.findById(paymentId)
-    			.orElseThrow(() -> new EntityNotFoundException("Payment not found"));
-    	pendingPayment.setStatus("SUCCESS");
-    	paymentRepository.save(pendingPayment);
+        Payment pendingPayment = paymentRepository.findById(paymentId)
+                .orElseThrow(() -> new EntityNotFoundException("Payment not found"));
+        pendingPayment.setStatus("SUCCESS");
+        paymentRepository.save(pendingPayment);
+        try {
+            orderClient.updateOrderStatus(pendingPayment.getOrderId(), "PAID");
+            System.out.println("Successfully notified Order Service: Order " + pendingPayment.getOrderId() + " is PAID.");
+        } catch (Exception e) {
+            System.err.println("CRITICAL: Payment succeeded, but failed to reach Order Service: " + e.getMessage());
+        }
     }
     public void cancelPayment(Long paymentId){
     	Payment pendingPayment = paymentRepository.findById(paymentId)

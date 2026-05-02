@@ -1,13 +1,10 @@
 package com.example.orderservice.controller;
 
 import com.example.orderservice.entity.Order;
+import com.example.orderservice.entity.OrderStatus;
 import com.example.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +18,6 @@ public class OrderController {
     public void getItems(@PathVariable Long readerId) {
         orderService.createOrderFromCart(readerId);
     }
-
     @PostMapping({"/checkout/{userId}", "/{userId}/checkout"})
     public Order checkout(@PathVariable Long userId) {
         return orderService.createOrderFromCart(userId);
@@ -34,4 +30,13 @@ public class OrderController {
     public Order getOrder(@PathVariable Long orderId, @PathVariable Long userId) {
         return orderService.getOrderById(orderId, userId);
     }
+    @GetMapping
+    public List<Order> getAllOrders(){
+        return  orderService.getAllOrders();
+    }
+    @PutMapping("/{id}/updateStatus")
+    public Order updateStatus(@PathVariable Long id, @RequestParam OrderStatus orderStatus) {
+        return orderService.updateOrderStatus(id, orderStatus);
+    }
 }
+

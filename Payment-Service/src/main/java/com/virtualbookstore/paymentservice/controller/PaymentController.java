@@ -21,7 +21,7 @@ import com.virtualbookstore.paymentservice.service.PaymentService;
 import jakarta.persistence.EntityNotFoundException;
 
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("/api/payment")
 public class PaymentController {
 
     @Autowired
@@ -32,35 +32,60 @@ public class PaymentController {
         StripeResponse stripeResponse = paymentService.payWithStripe(paymentRequest);
         return ResponseEntity.status(200).body(stripeResponse);
     }
-    
+
     @PostMapping("/stripe/webhook")
-    public ResponseEntity<String> handleStripeWebhook(@RequestBody String payload, @RequestHeader("Stripe-Signature") String sigHeader) {
-        //when deployed on AWS
-    	String endpointSecret="";
+    public ResponseEntity<String> handleStripeWebhook(
+            @RequestBody String payload,
+            @RequestHeader("Stripe-Signature") String sigHeader) {
+
+        String endpointSecret = "whsec_32b06a0c51562a2a9d5e220ad3dfcfdbe45b0e31b487533452442681a2d5daee";
 
         try {
             Event event = Webhook.constructEvent(payload, sigHeader, endpointSecret);
-            Session session = (Session) event.getDataObjectDeserializer().getObject().get();
-            
-            String paymentId = session.getMetadata().get("paymentId");
-            switch (event.getType()) {
-            case "payment_intent.succeeded":
-                paymentService.confirmPayment(Long.parseLong(paymentId));
-                break;
-            case "payment_intent.payment_failed":
-                paymentService.cancelPayment(Long.parseLong(paymentId));
-            	break;
-            default:
-               throw new Exception();
-        }
+
+            if ("checkout.session.completed".equals(event.getType())) {
+                Session session;
+                if (event.getDataObjectDeserializer().getObject().isPresent()) {
+                    session = (Session) event.getDataObjectDeserializer().getObject().get();
+                } else {
+                    session = (Session) event.getDataObjectDeserializer().deserializeUnsafe();
+                }
+
+                String paymentId = session.getMetadata().get("paymentId");
+
+                if (paymentId != null) {
+                    System.out.println("Payment Success! Updating DB for Payment ID: " + paymentId);
+                    paymentService.confirmPayment(Long.parseLong(paymentId));
+                }
+
+            } else if ("checkout.session.expired".equals(event.getType())) {
+                Session session;
+                if (event.getDataObjectDeserializer().getObject().isPresent()) {
+                    session = (Session) event.getDataObjectDeserializer().getObject().get();
+                } else {
+                    session = (Session) event.getDataObjectDeserializer().deserializeUnsafe();
+                }
+
+                String paymentId = session.getMetadata().get("paymentId");
+
+                if (paymentId != null) {
+                    System.out.println("Payment Expired/Cancelled for Payment ID: " + paymentId);
+                    paymentService.cancelPayment(Long.parseLong(paymentId));
+                }
+            } else {
+                System.out.println("Unhandled event type: " + event.getType());
+            }
+
             return ResponseEntity.ok("");
-        }catch (EntityNotFoundException enf) {
+
+        } catch (EntityNotFoundException enf) {
+            System.err.println("Database Error: " + enf.getMessage());
             return ResponseEntity.status(400).body("No such Payment");
         } catch (Exception e) {
+            System.err.println("Webhook Error: " + e.getMessage());
             return ResponseEntity.status(400).body("Webhook Error");
         }
     }
-    
     @GetMapping("/{paymentId}")
     public ResponseEntity<Object> getPayment(@PathVariable String paymentId){
     	try {
