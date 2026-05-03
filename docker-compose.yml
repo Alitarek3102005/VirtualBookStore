@@ -16,12 +16,11 @@ services:
     depends_on:
       - discovery-server
 
-  # 3. CATALOG SERVICE
   catalog-service:
     build: ./Catalog-Service
     container_name: catalog-service
     ports:
-      - "8084:8084" # Matches your application.properties
+      - "8084:8084"
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
       - SPRING_DATASOURCE_URL=jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
@@ -42,7 +41,6 @@ services:
     depends_on:
       - discovery-server
 
-  # 5. PAYMENT SERVICE
   payment-service:
     build: ./Payment-Service
     container_name: payment-service
