@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  discovery-server:
+    build: ./Discovery-Server
+    container_name: discovery-server
+    ports:
+      - "8761:8761"
+  api-gateway:
+    build: ./API-Gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+    depends_on:
+      - discovery-server
+
+  # 3. CATALOG SERVICE
+  catalog-service:
+    build: ./Catalog-Service
+    container_name: catalog-service
+    ports:
+      - "8084:8084" # Matches your application.properties
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
+      - SPRING_DATASOURCE_USERNAME=postgres.snzwjqihpdwvngaovedg
+      - SPRING_DATASOURCE_PASSWORD=Alitarek3102005
+    depends_on:
+      - discovery-server
+  order-service:
+    build: ./Order-Service
+    container_name: order-service
+    ports:
+      - "8087:8087"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
+      - SPRING_DATASOURCE_USERNAME=postgres.snzwjqihpdwvngaovedg
+      - SPRING_DATASOURCE_PASSWORD=Alitarek3102005
+    depends_on:
+      - discovery-server
+
+  # 5. PAYMENT SERVICE
+  payment-service:
+    build: ./Payment-Service
+    container_name: payment-service
+    ports:
+      - "8085:8085"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
+      - SPRING_DATASOURCE_USERNAME=postgres.snzwjqihpdwvngaovedg
+      - SPRING_DATASOURCE_PASSWORD=Alitarek3102005
+    depends_on:
+      - discovery-server
+
+  cart-service:
+    build: ./Cart-Service
+    container_name: cart-service
+    ports:
+      - "8082:8082"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
+      - SPRING_DATASOURCE_USERNAME=postgres.snzwjqihpdwvngaovedg
+      - SPRING_DATASOURCE_PASSWORD=Alitarek3102005
+    depends_on:
+      - discovery-server
+
+  auth-service:
+    build: ./Authentication-Service
+    container_name: auth-service
+    ports:
+      - "8081:8081"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
+      - SPRING_DATASOURCE_USERNAME=postgres.snzwjqihpdwvngaovedg
+      - SPRING_DATASOURCE_PASSWORD=Alitarek3102005
+    depends_on:
+      - discovery-server
+
+  reviews-service:
+    build: ./Reviews-Service
+    container_name: reviews-service
+    ports:
+      - "8086:8086"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
+      - SPRING_DATASOURCE_USERNAME=postgres.snzwjqihpdwvngaovedg
+      - SPRING_DATASOURCE_PASSWORD=Alitarek3102005
+    depends_on:
+      - discovery-server
