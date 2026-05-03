@@ -38,7 +38,7 @@ public class PaymentController {
             @RequestBody String payload,
             @RequestHeader("Stripe-Signature") String sigHeader) {
 
-        String endpointSecret = "";
+        String endpointSecret = "whsec_32b06a0c51562a2a9d5e220ad3dfcfdbe45b0e31b487533452442681a2d5daee";
 
         try {
             Event event = Webhook.constructEvent(payload, sigHeader, endpointSecret);
