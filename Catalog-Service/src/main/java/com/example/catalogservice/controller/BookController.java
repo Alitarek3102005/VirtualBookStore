@@ -78,6 +78,13 @@ public class BookController {
         bookService.reduceBookQuantity(id, quantity);
         return ResponseEntity.ok("Stock reduced successfully");
     }
-
+    @GetMapping("/lowstock")
+    public List<BookResponse> getLowStockBooks(){
+        return bookService.GetLowStockBooks();
+    }
+    @PutMapping("/{id}/updatequantity")
+    public BookResponse updateQuantity(@PathVariable Long id,@RequestParam Long quantity){
+        return bookService.updateQuantity(id, quantity);
+    }
 
 }

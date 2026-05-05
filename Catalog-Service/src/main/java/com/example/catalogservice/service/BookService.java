@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -145,5 +146,22 @@ public class BookService {
             .categoryName(book.getCategory().getName())
             .publisherName(publisherName)
             .build();
+    }
+    public List<BookResponse> GetLowStockBooks() {
+        List<BookResponse> bookResponses = new ArrayList<>();
+        List<Book> books = bookRepository.findAll();
+        for (Book book : books) {
+            if(book.getQuantity()<5){
+                bookResponses.add(mapToBookResponse(book));
+
+            }
+        }
+        return bookResponses;
+    }
+    public BookResponse updateQuantity(Long id, Long quantity) {
+        Book book = bookRepository.findById(id).orElse(null);
+        book.setQuantity(book.getQuantity() + quantity);
+        bookRepository.save(book);
+        return mapToBookResponse(book);
     }
 }
