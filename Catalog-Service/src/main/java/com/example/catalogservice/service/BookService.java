@@ -55,6 +55,7 @@ public class BookService {
         bookEntity.setPublisher_id(book.publisher_id());
         bookEntity.setQuantity(book.quantity());
         bookEntity.setDescription(book.description());
+        bookEntity.setImageUrl(book.imageUrl());
         return bookRepository.save(bookEntity);
     }
     public Book update(Long id, UpdateBook book) {

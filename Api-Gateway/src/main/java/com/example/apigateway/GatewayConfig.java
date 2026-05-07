@@ -23,7 +23,7 @@ public class GatewayConfig {
 
                 // 2. Catalog Service (Contains singular and plural to prevent 404s!)
                 .route("catalog-service", r -> r
-                        .path("/api/book/**", "/api/book", "/api/books/**","/api/category/**")
+                        .path("/api/book/**", "/api/book", "/api/books/**","/api/category/**","/api/media/**")
                         .uri("lb://catalog-service"))
 
                 // 3. Cart Service
@@ -45,7 +45,6 @@ public class GatewayConfig {
                 .route("reviews-service", r -> r
                         .path("/api/reviews/**")
                         .uri("lb://reviews-service"))
-
                 .build();
     }
 

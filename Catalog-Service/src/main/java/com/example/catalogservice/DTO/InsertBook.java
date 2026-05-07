@@ -14,7 +14,8 @@ public record InsertBook(
         Long publisher_id,
         @NotNull
         Long quantity,
-        String description
+        String description,
+        String imageUrl
 ) {
 
 }
