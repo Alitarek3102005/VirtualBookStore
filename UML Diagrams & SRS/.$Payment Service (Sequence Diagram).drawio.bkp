@@ -1,0 +1,184 @@
+<mxfile host="Electron" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36">
+  <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
+    <mxGraphModel dx="1783" dy="884" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-1" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#000000,#CCCCCC);fontColor=light-dark(#333333,#cccccc);" value="User" vertex="1">
+          <mxGeometry height="1294" width="150" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-2" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#000000,#CCCCCC);fontColor=light-dark(#333333,#cccccc);" value="Frontend" vertex="1">
+          <mxGeometry height="1294" width="150" x="220" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-3" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#000000,#CCCCCC);fontColor=light-dark(#333333,#cccccc);" value="PaymentController" vertex="1">
+          <mxGeometry height="1294" width="152" x="459" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-4" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#000000,#CCCCCC);fontColor=light-dark(#333333,#cccccc);" value="PaymentService" vertex="1">
+          <mxGeometry height="1294" width="150" x="730" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-5" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#000000,#CCCCCC);fontColor=light-dark(#333333,#cccccc);" value="PaymentRepository" vertex="1">
+          <mxGeometry height="1294" width="156" x="977" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-6" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#000000,#CCCCCC);fontColor=light-dark(#333333,#cccccc);" value="Stripe" vertex="1">
+          <mxGeometry height="1294" width="150" x="1183" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-7" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#000000,#CCCCCC);fontColor=light-dark(#333333,#cccccc);" value="Webhook" vertex="1">
+          <mxGeometry height="1294" width="150" x="1450" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-8" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#000000,#CCCCCC);fontColor=light-dark(#333333,#cccccc);" value="OrderClient" vertex="1">
+          <mxGeometry height="1294" width="150" x="1650" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-9" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#000000,#CCCCCC);fontColor=light-dark(#333333,#cccccc);" value="OrderService" vertex="1">
+          <mxGeometry height="1294" width="150" x="1858" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-10" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-2" value="Click Pay">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="204" y="129" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-11" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-2" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-3" value="POST /api/payment/pay">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="424" y="183" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-12" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-3" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-4" value="payWithStripe(request)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="679" y="237" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-13" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-4" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-5" value="save(Payment:PENDING)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="939" y="291" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-14" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-5" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-4" value="saved payment">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="942" y="345" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-15" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-4" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-6" value="create checkout session">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="399" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-16" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-6" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-4" value="sessionId + sessionUrl">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1043" y="453" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-17" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-4" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-3" value="StripeResponse">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="682" y="507" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-18" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-3" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-2" value="sessionUrl">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="427" y="561" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-19" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-6" value="Complete payment">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="685" y="615" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-20" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-6" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-7" value="checkout.session.completed">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1400" y="669" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-21" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-7" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-3" value="POST /api/payment/stripe/webhook">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1042" y="723" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-22" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-3" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-4" value="confirmPayment(paymentId)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="679" y="777" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-23" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-4" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-5" value="update status = SUCCESS">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="939" y="831" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-24" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-5" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-4" value="updated payment">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="942" y="885" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-25" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-4" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-8" value="updateOrderStatus(orderId, PAID)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1274" y="939" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-26" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-8" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-9" value="update order status">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1838" y="993" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-27" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-9" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-8" value="updated order">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1841" y="1047" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-28" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-8" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-4" value="success">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1277" y="1101" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-29" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-4" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-3" value="OK">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="682" y="1155" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rQH_ymuuX1OL8ypOa9oP-30" edge="1" parent="1" source="rQH_ymuuX1OL8ypOa9oP-3" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#CCCCCC);" target="rQH_ymuuX1OL8ypOa9oP-7" value="200 OK">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1039" y="1209" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
